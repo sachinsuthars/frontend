@@ -1,0 +1,12 @@
+#pipeline
+image: nodesource/node:iojs-2.0.2
+
+pipelines:
+ branches:
+  master:
+   - step:
+      script:
+       - cd deploy
+       - npm install s3 --no-save
+       - node deployS3_sync.js give.rkd.io ../build dashboard
+       - echo "DEPLOY SUCCESS ******************"
